@@ -18,8 +18,11 @@ public class Food {
     @Column(length = 128)
     private String name;
 
-    @Column(length = 450)
+    @Column(length = 128)
     private String image;
+
+    @Column(length = 450)
+    private String description;
 
     private int price;
 

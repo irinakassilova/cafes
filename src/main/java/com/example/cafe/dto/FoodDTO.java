@@ -14,6 +14,7 @@ public class FoodDTO {
     private int id;
     private String name;
     private String image;
+    private String description;
     private float price;
     private PlaceDTO place;
 
@@ -22,6 +23,7 @@ public class FoodDTO {
                 .id(food.getId())
                 .name(food.getName())
                 .image(food.getImage())
+                .description(food.getDescription())
                 .price(food.getPrice())
                 .place(PlaceDTO.from(food.getPlace()))
                 .build();
