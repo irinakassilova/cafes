@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "foods")
 @Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

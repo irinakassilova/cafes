@@ -10,20 +10,16 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 //@PreAuthorize("hasAuthority('ADMIN')")
-@RequestMapping("/admin")
+@RequestMapping("/manager")
 @AllArgsConstructor
-public class UserController {
+public class ManagerController {
     private final UserService service;
     private final UserRepository userRepository;
 
     @GetMapping
     public String userList(Model model, User user) {
-//        userRepository.findByRole(user.getRole());
-//        if(user.getRole().equals("ADMIN")) {
         model.addAttribute("users", userRepository.findAll());
         return "userList";
-//        }
-//        return "redirect:/login";
     }
 
     @GetMapping("{user}")

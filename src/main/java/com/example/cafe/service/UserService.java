@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -39,6 +41,15 @@ public class UserService {
         return UserDTO.from(user);
     }
 
+    public boolean isAdmin(Principal principal) {
+        User user = repository.findByEmail(principal.getName());
+        return user.getRole().equalsIgnoreCase("admin");
+    }
+
+    public boolean isManager(Principal principal) {
+        User user = repository.findByEmail(principal.getName());
+        return user.getRole().equalsIgnoreCase("manager");
+    }
 
 //    public UserDTO getByEmail(String email) {
 //        var user = userRepository.findByEmail(email);

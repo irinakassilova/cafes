@@ -11,8 +11,7 @@ CREATE TABLE users (
 -- add constraint user_role_user_fk
 -- foreign key (user_id) references users;
 --
--- insert into users(email, password, enabled, role)
--- values ('test1@mail.com', '111', true, 'ADMIN');
---
--- insert into user_role(user_id, roles)
--- values (1, 'ADMIN');
+insert into users(email, password, enabled, role)
+values ('admin@mail.com', '$2a$12$Vb8RRJHpUhf4nLeeiIJYQet4.//zUK2ZLFeumFrO1Q6oWpuuoSYha', true, 'ADMIN'),
+('manager@mail.com','$2a$12$Vb8RRJHpUhf4nLeeiIJYQet4.//zUK2ZLFeumFrO1Q6oWpuuoSYha', true, 'MANAGER');
+

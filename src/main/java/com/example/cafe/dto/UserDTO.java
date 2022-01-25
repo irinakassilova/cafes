@@ -1,12 +1,9 @@
 package com.example.cafe.dto;
 
-import com.example.cafe.model.Basket;
 import com.example.cafe.model.User;
 import lombok.*;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -15,7 +12,6 @@ import java.util.Set;
 public class UserDTO {
     private int id;
     private String email;
-    private List<Basket> items;
     private String role;
 //    private Set<Role> roles;
 

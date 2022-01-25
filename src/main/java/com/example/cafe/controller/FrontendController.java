@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.nio.file.AccessDeniedException;
+import java.security.Principal;
 
 @Controller
 @RequestMapping
@@ -50,20 +51,20 @@ public class FrontendController {
     }
 
     @GetMapping
-    public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
+    public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder, Principal principal) {
         var places = placeService.getPlaces(pageable);
         var uri = uriBuilder.getRequestURI();
         constructPageable(places, propertiesService.getDefaultPageSize(), model, uri);
+        model.addAttribute("principal", principal);
         return "index";
     }
 
     @GetMapping("/places/{id:\\d+?}")
-    public String placePage(@PathVariable int id, Model model, Pageable pageable, HttpServletRequest uriBuilder) {
+    public String placePage(@PathVariable int id, Model model, Pageable pageable, HttpServletRequest uriBuilder, Principal principal) {
         model.addAttribute("place", placeService.getPlace(id));
         var uri = uriBuilder.getRequestURI();
         var foods = foodService.getFoods(id, pageable);
         constructPageable(foods, propertiesService.getDefaultPageSize(), model, uri);
-
         return "place";
     }
 

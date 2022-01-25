@@ -8,21 +8,21 @@
     <title>Document</title>
 </head>
 <body>
-<p>List of users</p>
+<p>List of places</p>
 <table>
     <thead>
     <tr>
-        <th>Email: </th>
-        <th>Role: </th>
+        <th>Place: </th>
+        <th>Description: </th>
         <th></th>
     </tr>
     </thead>
     <tbody>
-    <#list users as user>
+    <#list places as place>
         <tr>
-            <td>${user.email}</td>
-<#--            <td><#list user.roles as role>${role}</#list></td>-->
-            <td><a href="/user/${user.id}">edit</a></td>
+            <td>${place.name}</td>
+            <td>${place.description}</td>
+            <td><a href="/place/${place.id}">edit</a></td>
         </tr>
 
     </#list>

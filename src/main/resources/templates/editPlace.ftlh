@@ -8,15 +8,14 @@
     <title>Document</title>
 </head>
 <body>
-<form action="/user" method="post">
-    <input type="text" name="email" value="${user.email}">
-    <#list roles as role>
+<form action="/manager" method="post">
+    <input type="text" name="" value="${place.name}">
         <div>
             <label>
-                <input type="checkbox" name="${role}" ${user.role}>${role}</label>
+                <input type="checkbox" name="${place}" ${place.description}>${place}</label>
         </div>
     </#list>
-    <input type="hidden" value="${user.id}" name="userId">
+    <input type="hidden" value="${place.id}" name="placeId">
     <input type="hidden" value="${_csrf.token}" name="_csrf">
     <button type="submit">Save</button>
 </form>

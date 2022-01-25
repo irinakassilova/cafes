@@ -2,8 +2,28 @@
 <@main.renderWith scripts=["/js/main.js"]>
 
     <a href="/register"> Зарегистрироваться! </a>
-    <p><a href="/login">Войти</a></p>
-    <p><a href="/admin">admin</a></p>
+
+    <#if principal??>
+
+        <#if principal.name=='manager@mail.com'>
+            <p><a href="/manager">manager</a></p>
+        </#if>
+        <#if principal.name=='admin@mail.com'>
+            <p><a href="/admin">admin</a></p>
+        </#if>
+
+        <form action="/logout" method="post">
+            <#if _csrf??>
+                <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+            </#if>
+            <button type="submit" value="">Выйти</button>
+        </form>
+
+    <#else>
+        <p><a href="/login">Войти</a></p>
+    </#if>
+
+
     <h1>Places</h1>
     <div class="flex flex-wrap" id="itemList">
         <#list items as listItem>
