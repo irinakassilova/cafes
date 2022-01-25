@@ -1,0 +1,50 @@
+package com.example.cafe.service;
+
+import com.example.cafe.dto.UserDTO;
+import com.example.cafe.exception.CustomerAlreadyRegister;
+import com.example.cafe.model.User;
+import com.example.cafe.model.UserRegisterForm;
+import com.example.cafe.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+@AllArgsConstructor
+public class UserService {
+    private final UserRepository repository;
+    private final PasswordEncoder encoder;
+
+    public UserDTO register(UserRegisterForm user){
+        if (repository.existsByEmail(user.getEmail())){
+            throw new CustomerAlreadyRegister();
+        }
+
+        var user1 = User.builder()
+                .email(user.getEmail())
+                .password(encoder.encode(user.getPassword()))
+                .role("USER")
+                .build();
+
+        repository.save(user1);
+
+        return UserDTO.from(user1);
+
+    }
+
+    public UserDTO getByEmail(String email) {
+        var user = repository.findByEmail(email);
+//                .orElseThrow(CustomerNotFoundException::new);
+
+        return UserDTO.from(user);
+    }
+
+
+//    public UserDTO getByEmail(String email) {
+//        var user = userRepository.findByEmail(email);
+//
+//        return UserDTO.from(user);
+}
+
+
+

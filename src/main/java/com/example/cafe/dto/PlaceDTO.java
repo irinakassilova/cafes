@@ -12,22 +12,22 @@ import lombok.*;
 public class PlaceDTO {
     private Integer id;
     private String name;
-    private String imagePath;
+    private String image;
     private String description;
 
     public static PlaceDTO from(Place place) {
         return builder()
                 .id(place.getId())
                 .name(place.getName())
-                .imagePath(calcStoreImagePath(place))
+                .image(place.getImage())
                 .description(place.getDescription())
                 .build();
     }
 
-    private static String calcStoreImagePath(Place place) {
-        if (!place.getImage().isBlank()) {
-            return place.getImage();
-        }
-        return String.format("/images/store%d.png", Math.abs(place.getName().hashCode() % 4));
-    }
+//    private static String calcStoreImagePath(Place place) {
+//        if (!place.getImage().isBlank()) {
+//            return place.getImage();
+//        }
+//        return String.format("/images/store%d.png", Math.abs(place.getName().hashCode() % 4));
+//    }
 }

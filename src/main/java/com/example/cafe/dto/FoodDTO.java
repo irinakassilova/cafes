@@ -18,7 +18,7 @@ public class FoodDTO {
     private float price;
     private PlaceDTO place;
 
-    static FoodDTO from(Food food) {
+    public static FoodDTO from(Food food) {
         return builder()
                 .id(food.getId())
                 .name(food.getName())
