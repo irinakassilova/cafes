@@ -21,8 +21,8 @@
     <#list users as user>
         <tr>
             <td>${user.email}</td>
-<#--            <td><#list user.roles as role>${role}</#list></td>-->
-            <td><a href="/user/${user.id}">edit</a></td>
+            <td>${user.role}</td>
+            <td><a href="manager/${user.id}">edit</a></td>
         </tr>
 
     </#list>

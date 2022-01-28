@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-//@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping("/manager")
 @AllArgsConstructor
 public class ManagerController {
@@ -25,7 +24,15 @@ public class ManagerController {
     @GetMapping("{user}")
     public String userEdit(@PathVariable User user, Model model) {
         model.addAttribute("user", user);
-//        model.addAttribute("roles", Role.values());
         return "userEdit";
+    }
+
+    @PostMapping("{user}")
+    public String saveUserAfterEdit(@RequestParam String email,
+                                    @RequestParam String role, @PathVariable User user) {
+        user.setRole(role);
+        user.setEmail(email);
+        userRepository.save(user);
+        return "redirect:/manager";
     }
 }

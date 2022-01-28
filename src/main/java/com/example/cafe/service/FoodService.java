@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class FoodService {
@@ -39,5 +41,8 @@ public class FoodService {
         foodRepository.deleteById(foodId);
     }
 
+    public List<Food> getAll() {
+        return foodRepository.findAll();
+    }
 }
 

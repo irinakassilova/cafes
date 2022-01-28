@@ -13,8 +13,11 @@
                 <#--                <a href="/foods/${listItem.id}">${listItem.name}</a>-->
                 <h3>${listItem.name}</h3>
                 <p>Цена: ${listItem.price}</p>
-                <form action="/basket" method="post">
+
+                <form action="/basket/add/${principal.name}" method="post">
                     <input name="id" type="hidden" value="${listItem.id}">
+                    <input name="count" type="number" required placeholder="Введите количество товара">
+<#--                    <input type="hidden" value="${principal.name}">-->
                     <button type="submit">Buy</button>
                     <#if _csrf??>
                         <input type="hidden"
@@ -22,6 +25,7 @@
                                value="${(_csrf.token)!'csrf-token'}" />
                     </#if>
                 </form>
+
             </div>
         </#list>
     </div>

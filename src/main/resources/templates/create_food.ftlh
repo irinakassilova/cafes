@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <body>
-<form action="admin/food/add" method="post">
+<form action="" method="post">
     <#if _csrf??>
         <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
     </#if>
@@ -18,6 +18,10 @@
     <div>
         <label>Description</label>
         <input type="text" name="description">
+    </div>
+    <div>
+        <label>Image</label>
+        <input type="text" name="image">
     </div>
     <div>
         <label class="form-label">Place</label>

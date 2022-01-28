@@ -22,7 +22,7 @@ public class Basket {
 
     @ManyToOne
     @JoinColumn(name = "food_id")
-    private Food product;
+    private Food food;
 
     private int count;
 

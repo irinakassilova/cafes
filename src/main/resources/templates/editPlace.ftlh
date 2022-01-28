@@ -8,14 +8,12 @@
     <title>Document</title>
 </head>
 <body>
-<form action="/manager" method="post">
-    <input type="text" name="" value="${place.name}">
-        <div>
-            <label>
-                <input type="checkbox" name="${place}" ${place.description}>${place}</label>
-        </div>
-    </#list>
-    <input type="hidden" value="${place.id}" name="placeId">
+<form action="admin/place/${place}" method="post">
+    <input type="text" name="name" value="${place.name}">
+    <div>
+        <input type="text" name="description" value="${place.description}">
+    </div>
+    <input type="hidden" value="${place.id}" name="userId">
     <input type="hidden" value="${_csrf.token}" name="_csrf">
     <button type="submit">Save</button>
 </form>

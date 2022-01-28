@@ -1,17 +1,15 @@
 <#import "partials/main.ftlh" as main />
 <@main.renderWith scripts=["/js/main.js"]>
 
-    <a href="/register"> Зарегистрироваться! </a>
-
     <#if principal??>
-
         <#if principal.name=='manager@mail.com'>
-            <p><a href="/manager">manager</a></p>
-        </#if>
-        <#if principal.name=='admin@mail.com'>
-            <p><a href="/admin">admin</a></p>
-        </#if>
-
+            <p><a href="/manager">Кабинет</a></p>
+        <#elseif  principal.name=='admin@mail.com'>
+            <p><a href="/admin">Кабинет</a></p>
+        <#else>
+            <p><a href="/profile">Кабинет</a> </p>
+            </#if>
+        <a href="/basket">Корзина</a>
         <form action="/logout" method="post">
             <#if _csrf??>
                 <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
@@ -21,6 +19,7 @@
 
     <#else>
         <p><a href="/login">Войти</a></p>
+        <a href="/register"> Зарегистрироваться! </a>
     </#if>
 
 

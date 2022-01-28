@@ -65,6 +65,7 @@ public class FrontendController {
         var uri = uriBuilder.getRequestURI();
         var foods = foodService.getFoods(id, pageable);
         constructPageable(foods, propertiesService.getDefaultPageSize(), model, uri);
+        model.addAttribute("principal", principal);
         return "place";
     }
 

@@ -1,6 +1,7 @@
 package com.example.cafe.controller;
 
 import com.example.cafe.dto.FoodDTO;
+import com.example.cafe.model.Food;
 import com.example.cafe.model.Place;
 import com.example.cafe.model.User;
 import com.example.cafe.repository.UserRepository;
@@ -30,15 +31,27 @@ public class AdminController {
     }
 
     @GetMapping("/place")
-    public String userList(Model model, User user) {
-        model.addAttribute("places", userRepository.findAll());
+    public String placeList(Model model) {
+        model.addAttribute("places", placeService.findAll());
         return "listPlace";
     }
 
     @GetMapping("place/{place}")
-    public String userEdit(@PathVariable Place place, Model model) {
+    public String placeEdit(@PathVariable Place place, Model model) {
         model.addAttribute("place", place);
-        return "listPlace";
+        return "editPlace";
+    }
+
+    @GetMapping("/food")
+    public String userList(Model model) {
+        model.addAttribute("foods", userRepository.findAll());
+        return "listFood";
+    }
+
+    @GetMapping("food/{food}")
+    public String foodEdit(@PathVariable Food food, Model model) {
+        model.addAttribute("food", food);
+        return "listFood";
     }
 
     @GetMapping("/food/add")
