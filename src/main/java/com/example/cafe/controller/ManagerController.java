@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("/manager")
 @AllArgsConstructor
 public class ManagerController {
@@ -16,23 +18,24 @@ public class ManagerController {
     private final UserRepository userRepository;
 
     @GetMapping
-    public String userList(Model model, User user) {
-        model.addAttribute("users", userRepository.findAll());
-        return "userList";
-    }
-
-    @GetMapping("{user}")
-    public String userEdit(@PathVariable User user, Model model) {
-        model.addAttribute("user", user);
-        return "userEdit";
-    }
-
-    @PostMapping("{user}")
-    public String saveUserAfterEdit(@RequestParam String email,
-                                    @RequestParam String role, @PathVariable User user) {
-        user.setRole(role);
-        user.setEmail(email);
-        userRepository.save(user);
-        return "redirect:/manager";
+    public List<User> userList() {
+        return userRepository.findAll();
+//        return "userList";
+//    }
+//
+//    @GetMapping("{user}")
+//    public String userEdit(@PathVariable User user, Model model) {
+//        model.addAttribute("user", user);
+//        return "userEdit";
+//    }
+//
+//    @PostMapping("{user}")
+//    public String saveUserAfterEdit(@RequestParam String email,
+//                                    @RequestParam String role, @PathVariable User user) {
+//        user.setRole(role);
+//        user.setEmail(email);
+//        userRepository.save(user);
+//        return "redirect:/manager";
+//    }
     }
 }

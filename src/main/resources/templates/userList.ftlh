@@ -9,7 +9,8 @@
 </head>
 <body>
 <p>List of users</p>
-<table>
+
+<table id="userList">
     <thead>
     <tr>
         <th>Email: </th>
@@ -17,16 +18,18 @@
         <th></th>
     </tr>
     </thead>
-    <tbody>
-    <#list users as user>
-        <tr>
-            <td>${user.email}</td>
-            <td>${user.role}</td>
-            <td><a href="manager/${user.id}">edit</a></td>
-        </tr>
-
-    </#list>
-    </tbody>
 </table>
+<script>
+    async function getUser() {
+        let response = await fetch("/manager");
+        return await response.text();
+    }
+    const target = document.getElementById("userList");
+    getUser().then(
+        (result)=> {
+            console.log(result);
+            target.innerHTML = result;
+        });
+</script>
 </body>
 </html>

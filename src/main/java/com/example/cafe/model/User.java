@@ -36,8 +36,8 @@ public class User {
     @Column
     @Builder.Default
     private boolean enabled = true;
-
-    @OneToMany
-    List<Basket> baskets;
+//
+//    @OneToMany
+//    List<Basket> baskets;
 }
 

@@ -22,7 +22,7 @@ public class Place {
     @Size(min = 1, max = 128)
     private String image;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Basket basket;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    private Basket basket;
 }
 
